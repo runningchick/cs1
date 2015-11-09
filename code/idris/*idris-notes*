@@ -1,0 +1,5 @@
+- + Errors (1)
+ `-- boolTest.idr line 19 col 3:
+     When checking right hand side of b5:
+     Can't disambiguate since no name has a suitable type: 
+             Prelude.Bool.not, bool.not

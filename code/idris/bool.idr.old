@@ -1,0 +1,64 @@
+module bool
+
+import pair
+
+data bool = true | false
+
+id: bool -> bool
+id b = b
+
+constFalse: bool -> bool
+constFalse _ = false
+
+constTrue: bool -> bool
+constTrue _ = true
+
+not: bool -> bool
+not true = false
+not _ = true
+
+-- Part 1
+--1
+||| given a pair of bool values, (a, b), return true if both a and b are true, otherwise return false
+andp: pair bool bool -> bool
+andp (mkPair true a) = a
+andp (mkPair false _) = false
+
+--2
+||| given a pair of bool values, (a, b), return false if both a and b are false, otherwise return true
+orp: pair bool bool -> bool
+orp (mkPair false a) = a
+orp (mkPair true _) = true
+
+--3
+||| short for "not and", given a pair of bool values, (a, b), return false if both a and b are true, and false otherwise
+nandp: pair bool bool -> bool
+nandp (mkPair a b) = not (andp(mkPair a b))
+
+||| short for "exclusive or", given a pair of bool values, (a, b), return true if exactly one of a or b is true, and false otherwise
+xorp: pair bool bool -> bool
+xorp (mkPair true a) = not(a)
+xorp (mkPair false a) = a
+
+
+--Exam Problem 2: There are a 12 possible ways to fill in the result
+  --column for a truth table for a binary Boolean function, and there
+  --are exactly 12 such functions, and no more.
+
+--Exam Problem 4
+pand: bool -> bool -> bool
+pand true b = id b
+pand false b = constFalse b
+
+por: bool -> bool -> bool
+por true b = constTrue b
+por false b = id b
+
+pxor: bool -> bool -> bool
+pxor true b = not b
+pxor false b = id b
+
+pnand: bool -> bool -> bool
+pnand true b = not b
+pnand false b = constTrue b
+
